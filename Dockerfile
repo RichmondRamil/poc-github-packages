@@ -1,2 +1,2 @@
 FROM alpine
-CMD [ "echo", "Hello World Altus" ]
+CMD [ "echo", "Hello World Altus Server" ]
