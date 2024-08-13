@@ -13,9 +13,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dockerfile: ./client/Dockerfile
+          - dockerfile: ../../client/Dockerfile
             image: ghcr.io/username/image1
-          - dockerfile: ./server/Dockerfile
+          - dockerfile: ../../server/Dockerfile
             image: ghcr.io/username/image2
     permissions:
       contents: read
