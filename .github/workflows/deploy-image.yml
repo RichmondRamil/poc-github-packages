@@ -5,7 +5,7 @@ on: push
 env:
   REGISTRY: ghcr.io
   CUSTOM_NAME: poc-installed-packages
-  IMAGE_NAME: ${{ env.CUSTOM_NAME }}-${{ github.ref_name }}  # Use the branch name in combination with your custom name
+  IMAGE_NAME: ${{ env.CUSTOM_NAME }}-${{ github.ref_name }}
 
 jobs:
   build-and-push-image:
