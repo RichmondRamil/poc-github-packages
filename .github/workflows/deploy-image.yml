@@ -44,7 +44,7 @@ jobs:
           push: true
           tags: |
             ${{ matrix.image }}:latest
-            ${{ matrix.image }}:${{ env.DATE_TAG }}
+            ${{ matrix.image }}-${{ env.DATE_TAG }}
           labels: |
             org.opencontainers.image.source=${{ github.repositoryUrl }}
             org.opencontainers.image.revision=${{ github.sha }}
