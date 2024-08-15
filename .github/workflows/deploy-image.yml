@@ -14,9 +14,9 @@ jobs:
       matrix:
         include:
           - dockerfile: ./client/Dockerfile
-            image: ghcr.io/richmondramil/dockertestv1
+            image: ghcr.io/richmondramil/client
           - dockerfile: ./server/Dockerfile
-            image: ghcr.io/richmondramil/dockertestv2
+            image: ghcr.io/richmondramil/server
     permissions:
       contents: read
       packages: write
