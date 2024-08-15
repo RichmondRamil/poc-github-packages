@@ -13,9 +13,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dockerfile: ././client/Dockerfile
+          - dockerfile: ./client/Dockerfile
             image: ghcr.io/richmondramil/dockertestv1
-          - dockerfile: ././server/Dockerfile
+          - dockerfile: ./server/Dockerfile
             image: ghcr.io/richmondramil/dockertestv2
     permissions:
       contents: read
@@ -32,6 +32,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Generate date-based tag
+        id: date-tag
+        run: echo "DATE_TAG=$(date +'%Y%m%d')" >> $GITHUB_ENV
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
@@ -40,6 +44,8 @@ jobs:
           tags: |
             type=ref,event=branch
             type=sha
+            type=date,format=yyyyMMdd
+          labels: ${{ steps.date-tag.outputs.DATE_TAG }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
@@ -47,5 +53,5 @@ jobs:
           context: .
           file: ${{ matrix.dockerfile }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }},${{ env.DATE_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
