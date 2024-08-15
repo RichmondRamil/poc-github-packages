@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate date-based tag
         id: date-tag
-        run: echo "DATE_TAG=$(date +'%Y%m%d')" >> $GITHUB_ENV
+        run: echo "DATE_TAG=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
@@ -48,4 +48,4 @@ jobs:
           labels: |
             org.opencontainers.image.source=${{ github.repositoryUrl }}
             org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.created=${{ steps.date-tag.outputs.DATE_TAG }}
+            org.opencontainers.image.created=${{ env.DATE_TAG }}
